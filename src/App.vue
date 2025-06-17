@@ -1,85 +1,59 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import router from './router'
+
+const routes = router.options.routes
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="app-wrapper">
+    <el-container>
+      <el-header class="header">Header</el-header>
+      <el-container>
+        <el-aside width="198px" class="aside">
+          <el-menu
+            active-text-color="#ffd04b"
+            background-color="#545c64"
+            text-color="#fff"
+            class="el-menu-vertical"
+            default-active="/"
+            router
+          >
+            <el-menu-item v-for="item in routes" :key="item.name" :index="item.path">
+              <span>Vue3基础</span>
+            </el-menu-item>
+          </el-menu>
+        </el-aside>
+        <el-main>
+          <RouterView />
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.app-wrapper {
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  height: 100vh;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.header {
+  width: 100%;
+  background-color: #555c64;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.aside {
+  background-color: #555c64;
+  color: #fff;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.el-menu-vertical {
+  width: 101%;
+  height: 100vh;
 }
 </style>
