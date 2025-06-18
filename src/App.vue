@@ -24,9 +24,19 @@ const getMenuName = (item: any) => {
         <el-aside width="198px" class="aside">
           <el-menu active-text-color="#ffd04b" background-color="#545c64" text-color="#fff" class="el-menu-vertical"
             :default-active="currentPath" router>
-            <el-menu-item v-for="item in routes" :key="item.name" :index="item.path" @click="currentPath = item.path">
-              <span>{{ getMenuName(item) }}</span>
-            </el-menu-item>
+            <template v-for="item in routes" :key="item.name">
+              <el-sub-menu v-if="item.children?.length" :index="item.path">
+                <template #title>
+                  <span>Vue3基础</span>
+                </template>
+                <el-menu-item v-for="child in item.children" :key="child.name" :index="child.path" @click="currentPath = child.path">
+                  <span>{{ getMenuName(child) }}</span>
+                </el-menu-item>
+              </el-sub-menu>
+              <el-menu-item v-else :index="item.path" @click="currentPath = item.path">
+                <span>{{ getMenuName(item) }}</span>
+              </el-menu-item>
+            </template>
           </el-menu>
         </el-aside>
         <el-main>

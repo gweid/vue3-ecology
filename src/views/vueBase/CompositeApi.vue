@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import useFetch from '../hooks/useFetch'
+import useFetch from '../../hooks/useFetch'
 
 const currentPage = ref(1)
 
