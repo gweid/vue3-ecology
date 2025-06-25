@@ -182,7 +182,7 @@ const router = createRouter({
               name: '自定义指令',
             },
           },
-          component: () => import('../views/vueBase/CustomCommand.vue'),
+          component: () => import('../views/vueBase/CustomDirective.vue'),
         },
         {
           path: '/plugins',
